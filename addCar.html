@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加车牌</title>
+    <script src="js/flexible.js"></script>
+    <link rel="stylesheet" href="css/addCard.css">
+
+</head>
+<body>
+    <div class="addBox" v-cloak>
+        <p class="addTitle">请输入您的车牌号</p>
+        <p>(绿色框为新能源汽车车牌)</p>
+        <div class="cardBox" @tap="showMainKey">
+            <div class='card1'>
+                <div>{{yourCard[0]}}</div>
+                <div>{{yourCard[1]}}</div>
+            </div>
+            <div class="card2">
+                <div>{{yourCard[2]}}</div>
+                <div>{{yourCard[3]}}</div>
+                <div>{{yourCard[4]}}</div>
+                <div>{{yourCard[5]}}</div>
+                <div>{{yourCard[6]}}</div>
+            </div>
+            <div class="card3">{{yourCard[7]}}</div>
+        </div>
+        <div class="next">
+            <button @tap="nextStep">下一步</button>
+        </div>
+        <div class="mainKeyBoard" :class="showKey?'active':''" >
+            <div class="closeBox">
+                <span @tap="closeMainKey">关闭</span>
+            </div>
+            <ul v-if="active==0">
+                <li>
+                    <div v-for="item in card1" @tap="choose(item)">{{item}}</div>
+
+                </li>
+                <li>
+                    <div v-for="item in card2" @tap="choose(item)">{{item}}</div>
+                </li>
+                <li>
+                    <div v-for="item in card3" @tap="choose(item)">{{item}}</div>
+                </li>
+                <li>
+                    <div v-for="item in card4" @tap="choose(item)">{{item}}</div>
+                    <div class="del" @tap="delCard"></div>
+                </li>
+            </ul>
+            <ul v-else class="numberKey">
+                <li>
+                    <div v-for="item in number1" @tap="choose(item)" :style="active==1?'pointer-events: none;opacity:0.4':''">{{item}}</div>
+
+                </li>
+                <li>
+                    <div v-for="(item,index) in number2" @tap="choose(item)"   :style="index<2&&active!=6?'pointer-events: none;opacity:0.4':''">{{item}}</div>
+                </li>
+                <li>
+                    <div v-for="(item,index) in number3" @tap="choose(item)"  :style="index<1&&active!=6?'pointer-events: none;opacity:0.4':''">{{item}}</div>
+                </li>
+                <li>
+                    <div v-for="(item,index) in number4" @tap="choose(item)"  :style="index<1&&active!=6?'pointer-events: none;opacity:0.4':''">{{item}}</div>
+                    <div class="del" @tap="delCard"></div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'.addBox',
+        data:{
+            card1:['京','沪','粤','津','冀','豫','云','辽','羔','湘'],
+            card2:['皖','鲁','新','苏','浙','赣','鄂','桂','甘'],
+            card3:['晋','蒙','陕','吉','闽','贵','渝','川'],
+            card4:['青','藏','琼','宁','使'],
+            yourCard:[],
+            active:0,
+            number1:[1,2,3,4,5,6,7,8,9,0],
+            number2:['港','澳','Q','W','E','R','T','Y','U','P'],
+            number3:['学','A','S','D','F','G','H','J','K','L'],
+            number4:['警','Z','X','C','V','B','N','M'],
+            showKey:false
+        },
+        methods:{
+            choose(item){
+
+                if(this.yourCard.length<=7){
+                    this.yourCard.push(item);
+                }
+                if(this.yourCard.length==7){
+                    this.closeMainKey()
+                }
+                this.active=this.yourCard.length;
+            },
+            delCard(){
+                this.yourCard=this.yourCard.slice(0,this.yourCard.length-1);
+                this.active=this.yourCard.length;
+                console.log(this.yourCard.length);
+                if(this.yourCard.length==0){
+                    this.active=0
+                }
+
+            },
+            showMainKey(){
+                this.showKey=true;
+            },
+            closeMainKey(){
+                this.showKey=false
+            },
+            nextStep(){
+                //判断条件
+                if(this.yourCard.length>=7){
+                    window.location.href='success.html'
+                }else{
+                    alert("请输入正确的车牌号码")
+                }
+
+            }
+        }
+    })
+</script>
+</html>

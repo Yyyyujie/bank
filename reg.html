@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>招行无感停车</title>
+    <script src="js/flexible.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="welcome">
+        <p>欢迎来到</p>
+        <P>招行无感停车</P>
+    </div>
+
+
+
+    <div  class="inputBox">
+        <input type="number" v-model="phone" placeholder="请输入手机号码" v-if="type==0" @focus="showKey" readonly="readonly">
+        <div class="codeBox" v-else>
+            <input type="number" maxlength="1" @focus="inputNum" :value="code[0]" readonly="readonly">
+            <input type="number" maxlength="1"  @focus="inputNum" :value="code[1]" readonly="readonly">
+            <input type="number" maxlength="1"   @focus="inputNum" :value="code[2]" readonly="readonly">
+            <input type="number" maxlength="1" @focus="inputNum"  :value="code[3]" readonly="readonly">
+        </div>
+    </div>
+    <div class="btn">
+        <button @tap="getCode" v-if="type==0">获取验证码</button>
+        <button @tap="next" v-else>下一步</button>
+    </div>
+    <div class="keyboard">
+        <ul>
+            <li v-for="(v,i) in num" @tap="keyTap(v)">{{v}}</li>
+            <li class="clear" @tap="clear">
+                <div class="clearIcon"></div>
+            </li>
+            <li @tap="keyTap(0)">0</li>
+            <li class="sure" @tap="sure">
+                <div class="sureIcon"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+
+<script>
+    var reg=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+    var vm = new Vue({
+        el:"#app",
+        data: {
+            type: 0,
+            phone: '',
+            num:[1,2,3,4,5,6,7,8,9],
+            code:[]
+        },
+        methods:{
+            showKey(){
+                //手机号码input获取焦点 键盘出现
+                $(".keyboard").addClass("active")
+            },
+            sure(){
+                $(".keyboard").removeClass("active")
+            },
+            clear(){
+                if(this.type==0){
+                    this.phone=this.phone.slice(0,this.phone.length-1);
+                }else{
+                    this.code=this.code.slice(0,this.code.length-1);
+                }
+
+            },
+            keyTap(val){
+                if(this.type==0){
+                    if(this.phone.length<11){
+                        this.phone+=val;
+                        if(this.phone.length==11){
+                            vm.sure();
+                        }
+                    }else{
+                        alert("手机号码最多11位")
+                    }
+                }else{
+                    if(this.code.length==4){
+                        alert("验证码最多4位数")
+                    }else{
+                        this.code.push(val)
+                    }
+
+                    console.log(this.code)
+                }
+
+
+            },
+            getCode(){
+                if(reg.test(this.phone)){
+                    //这里发送验证码
+                    this.type=1;
+                }else{
+                    alert("请输入正确的手机号码")
+                }
+            },
+            inputNum(){
+                $(".keyboard").addClass("active")
+            },
+            next(){
+                let code=this.code.join("");
+                window.location.href='index.html'
+
+            }
+        }
+    })
+
+
+
+</script>
+</html>

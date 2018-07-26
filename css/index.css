@@ -10,6 +10,10 @@ ul,li{
 	margin:0;
 	padding:0;
 }
+p{
+	padding: 0;
+	margin: 0;
+}
 .welcome{
 	width: 100%;
 	padding:2.0rem 0.666667rem;
@@ -100,4 +104,99 @@ input::-webkit-input-placeholder{
 	outline: none;
 	color: #fff;
 	font-size: 0.45rem;
+}
+.codeBox{
+	overflow: hidden;
+	display: flex;
+	justify-content: space-around;
+}
+.codeBox input{
+	width: 2rem;
+	height: 2rem;
+	float: left;
+	text-align: center;
+	padding-left: 0;
+	font-size: 1rem;
+	background: transparent;
+	border: none;
+	border-bottom: 3px solid #F9E6E8;
+}
+.content .banner{
+	width: 100%;
+	height: 5.75rem;
+	background: url("../images/banner.png") bottom no-repeat;
+	background-size: cover;
+}
+.content .banner p{
+	text-align: center;
+	color: #fff;
+	font-weight: 500;
+	font-size: 0.7rem;
+	padding-top: 1rem;
+	letter-spacing: 0.04rem;
+}
+.carList{
+	width: 100%;
+	padding: 0.6rem 0.4rem;
+}
+.carList li{
+	width: 100%;
+	height: 2.6rem;
+	display: flex;
+	align-items: center;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 0.2rem;
+	margin-bottom: 0.6rem;
+	padding-left: 0.4rem;
+	font-size: 0.8rem;
+	color: #fff;
+	letter-spacing: 0.1rem;
+	justify-content: space-between;
+	padding-right: 0.4rem;
+}
+.carList li span{
+	color: #fff;
+	display: inline-block;
+	/*position: absolute;*/
+	/*right: 0.6rem;*/
+	font-size: 0.3rem;
+	letter-spacing: 0.05rem;
+}
+.content .addCard{
+	width: 100%;
+	height: 1.4rem;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+}
+.content .addCard button{
+	background: #000;
+	width: 50%;
+	height: 100%;
+	border: none;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+.content .addCard button:first-child{
+	background: #320001;
+}
+.content .addCard button span{
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	border: 1px solid #fff;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	color: #fff;
+	margin-right: 0.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

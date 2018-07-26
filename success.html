@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>签约成功</title>
+    <script src="js/flexible.js"></script>
+    <link rel="stylesheet" href="css/addCard.css">
+</head>
+<body>
+    <div class="successBox" v-cloak>
+        <div class="sucIcon"></div>
+        <div class="successList">
+            <ul>
+                <li>
+                    <span>签约账号</span>
+                    <span>{{num1}}</span>
+                </li>
+                <li>
+                    <span>签约账号</span>
+                    <span>{{num2}}</span>
+                </li>
+                <li>
+                    <span>签约账号</span>
+                    <span>{{num3}}</span>
+                </li>
+                <li>
+                    <span>签约账号</span>
+                    <span>{{num4}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="successBtn">
+            <button @tap="addOk">确定</button>
+        </div>
+    </div>
+
+</body>
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'.successBox',
+        data:{
+            num1:'123113213',
+            num2:'548643123',
+            num3:'65432123',
+            num4:'562112322563'
+        },
+        methods:{
+            addOk(){
+                window.location.href="index.html"
+            }
+        }
+    })
+</script>
+</html>

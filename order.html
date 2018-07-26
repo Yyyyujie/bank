@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的订单</title>
+    <script src="js/flexible.js"></script>
+    <link rel="stylesheet" href="css/addCard.css">
+</head>
+<body>
+<div id="order">
+    <ul>
+        <li @tap="orderCon">
+            <p>捷豹快捷酒店-停车场</p>
+            <p class="boldP">晋A·66666</p>
+            <p>停车时间：<span>2017年6月20日 16:00</span></p>
+            <p>当前停车时间：2小时</p>
+            <div class="liBottom">
+                <p>合计：<span class="boldP">20.00</span></p>
+
+            </div>
+            <div class="status">待取车</div>
+            <div class="cardBg"></div>
+            <div class="sTiao"></div>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+<script>
+    var vm= new Vue({
+        el:'#order',
+        data:{},
+        methods:{
+            orderCon(){
+                window.location.href='orderCon.html'
+            }
+        }
+    })
+</script>
+</html>
